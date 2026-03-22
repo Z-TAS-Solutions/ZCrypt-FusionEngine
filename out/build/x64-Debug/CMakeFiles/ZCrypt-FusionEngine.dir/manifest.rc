@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/out/build/x64-Debug/CMakeFiles/ZCrypt-FusionEngine.dir/embed.manifest"

@@ -15,7 +15,7 @@ else()
     set(architecture x86)
 endif()
 
-add_executable(ZCrypt-FusionEngine ${SOURCES})
+add_executable(ZCrypt-FusionEngine ${SOURCES} "src/HammingDistance.cpp")
 
 #file(GLOB EXTERNAL_DLIBS
 #    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Debug/${architecture}/*.lib"

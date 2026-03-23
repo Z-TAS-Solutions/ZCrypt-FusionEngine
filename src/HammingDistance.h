@@ -12,4 +12,9 @@ int MatchHammingD(const std::vector<uint8_t>& src1, const std::vector<uint8_t>& 
 
 int MatchHammingD(const BiometricTemplate& TemplateA, const BiometricTemplate& TemplateB);
 
+inline int GetHammingDSCore(int distance) 
+{
+	return ((TEMPLATE_SIZE - distance) * 100) / TEMPLATE_SIZE;
+}
+
 #endif

@@ -1,6 +1,7 @@
 # ninja log v6
-4	595	7958921563894199	CMakeFiles/ZCrypt-FusionEngine.dir/src/main.cpp.obj	3d54d4e3c00fce03
-597	1262	7958921569819367	ZCrypt-FusionEngine.exe	2eb43efc58990825
-79	947	7959730698826901	CMakeFiles/ZCrypt-FusionEngine.dir/src/HammingDistance.cpp.obj	ac511d974ef4b264
 86	1126	7959730698898643	CMakeFiles/ZCrypt-FusionEngine.dir/src/main.cpp.obj	3d54d4e3c00fce03
 1126	2491	7959730709300898	ZCrypt-FusionEngine.exe	9f9fc00825e0a0bd
+79	947	7959730698826901	CMakeFiles/ZCrypt-FusionEngine.dir/src/HammingDistance.cpp.obj	ac511d974ef4b264
+7	523	7959765037164581	CMakeFiles/ZCrypt-FusionEngine.dir/src/HammingDistance.cpp.obj	ac511d974ef4b264
+7	570	7959766942475701	CMakeFiles/ZCrypt-FusionEngine.dir/src/main.cpp.obj	3d54d4e3c00fce03
+570	1008	7959766948110005	ZCrypt-FusionEngine.exe	9f9fc00825e0a0bd

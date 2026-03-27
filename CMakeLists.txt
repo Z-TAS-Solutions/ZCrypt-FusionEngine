@@ -15,24 +15,23 @@ else()
     set(architecture x86)
 endif()
 
-add_executable(ZCrypt-FusionEngine ${SOURCES} "src/HammingDistance.cpp")
+add_executable(ZCrypt-FusionEngine ${SOURCES} "src/HammingDistance.cpp" "src/CaptureEngine.cpp")
 
-#file(GLOB EXTERNAL_DLIBS
-#    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Debug/${architecture}/*.lib"
-#)
+file(GLOB EXTERNAL_DLIBS
+    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Debug/${architecture}/*.lib"
+)
 
-#file(GLOB EXTERNAL_LIBS
-#    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Release/${architecture}/*.lib"
-#)
+file(GLOB EXTERNAL_LIBS
+    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Release/${architecture}/*.lib"
+)
 
-#file(GLOB EXTERNAL_ULIBS
-#    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Universal/${architecture}/*.lib"
-#)
+file(GLOB EXTERNAL_ULIBS
+    "${CMAKE_CURRENT_SOURCE_DIR}/external/lib/Universal/${architecture}/*.lib"
+)
 
-
-#target_link_libraries(ZCrypt-FusionEngine PRIVATE 
-#    ${EXTERNAL_ULIBS}
-#    debug ${EXTERNAL_DLIBS}
-#    optimized ${EXTERNAL_LIBS}
-#)
+target_link_libraries(ZCrypt-FusionEngine PRIVATE 
+    ${EXTERNAL_ULIBS}
+    debug ${EXTERNAL_DLIBS}
+    optimized ${EXTERNAL_LIBS}
+)
 

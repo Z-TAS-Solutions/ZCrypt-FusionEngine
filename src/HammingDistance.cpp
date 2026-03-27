@@ -22,4 +22,4 @@ int MatchHammingD(const BiometricTemplate& TemplateA, const BiometricTemplate& T
         }
     }
     return UnmatchedCount;
-} 
+}

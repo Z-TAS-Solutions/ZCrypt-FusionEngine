@@ -49,6 +49,14 @@ cmake_ninja_workdir = D$:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEn
 
 build cmake_object_order_depends_target_ZCrypt-FusionEngine: phony || .
 
+build CMakeFiles\ZCrypt-FusionEngine.dir\src\CaptureEngine.cpp.obj: CXX_COMPILER__ZCrypt-FusionEngine_unscanned_Debug D$:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\CaptureEngine.cpp || cmake_object_order_depends_target_ZCrypt-FusionEngine
+  FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\ZCrypt-FusionEngine -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\PRIVATE -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\external\include
+  OBJECT_DIR = CMakeFiles\ZCrypt-FusionEngine.dir
+  OBJECT_FILE_DIR = CMakeFiles\ZCrypt-FusionEngine.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\ZCrypt-FusionEngine.dir\
+  TARGET_PDB = ZCrypt-FusionEngine.pdb
+
 build CMakeFiles\ZCrypt-FusionEngine.dir\src\HammingDistance.cpp.obj: CXX_COMPILER__ZCrypt-FusionEngine_unscanned_Debug D$:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\HammingDistance.cpp || cmake_object_order_depends_target_ZCrypt-FusionEngine
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
   INCLUDES = -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\ZCrypt-FusionEngine -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\PRIVATE -ID:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\external\include
@@ -73,10 +81,10 @@ build CMakeFiles\ZCrypt-FusionEngine.dir\src\main.cpp.obj: CXX_COMPILER__ZCrypt-
 #############################################
 # Link the executable ZCrypt-FusionEngine.exe
 
-build ZCrypt-FusionEngine.exe: CXX_EXECUTABLE_LINKER__ZCrypt-FusionEngine_Debug CMakeFiles\ZCrypt-FusionEngine.dir\src\HammingDistance.cpp.obj CMakeFiles\ZCrypt-FusionEngine.dir\src\main.cpp.obj
+build ZCrypt-FusionEngine.exe: CXX_EXECUTABLE_LINKER__ZCrypt-FusionEngine_Debug CMakeFiles\ZCrypt-FusionEngine.dir\src\CaptureEngine.cpp.obj CMakeFiles\ZCrypt-FusionEngine.dir\src\HammingDistance.cpp.obj CMakeFiles\ZCrypt-FusionEngine.dir\src\main.cpp.obj | D$:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\external\lib\Debug\x64\opencv_world490d.lib
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\external\lib\Debug\x64\opencv_world490d.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\ZCrypt-FusionEngine.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

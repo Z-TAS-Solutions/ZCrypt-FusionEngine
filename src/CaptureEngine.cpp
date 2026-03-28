@@ -1,5 +1,11 @@
 #include "CaptureEngine.h"
 
+
+cv::Mat& ZPiCap::GetMainFrame() {
+	return this->MainFrame;
+}
+
+
 std::string ZPiCap::GenerateStreamURL(StreamMode mode, std::string_view ip, int port)
 {
 	std::string url;
@@ -185,5 +191,50 @@ void ZPiCap::CloseStream()
 		LiveFeedStatus = LiveFeedState::CLOSED;
 
 		std::cout << "Capture closed successfully." << std::endl;
+	}
+}
+
+
+bool ZPiCap::Read() {
+	if (!CaptureEngine.isOpened()) {
+		return false;
+	}
+
+	return CaptureEngine.read(MainFrame);
+}
+
+
+bool ZPiCap::ReadTo(cv::Mat& frame) {
+	if (!CaptureEngine.isOpened()) {
+		return false;
+	}
+
+	return CaptureEngine.read(frame);
+}
+
+
+bool ZPiCap::ForceOpenGStream8Bit(const std::string& ip, int port, StreamMode mode) {
+	std::string url = GenerateStreamURL(mode, ip, port);
+	int retryCount = 0;
+
+	std::cout << "[ZTAS] Attempting to connect to: " << url << std::endl;
+
+	while (true) {
+		if (SetupGStreamerPipeline8Bit(ip, port, mode, true, true, CaptureEngine)) {
+			if (CaptureEngine.isOpened()) {
+				std::cout << "\n[ZTAS] Connection Established! Stream is LIVE." << std::endl;
+				LiveFeedStatus = LiveFeedState::READY;
+				return true;
+			}
+		}
+
+		retryCount++;
+		std::cout << "\r[ZTAS] Connection failed. Retry #" << retryCount << " (Searching for Pi...)" << std::flush;
+
+		std::this_thread::sleep_for(std::chrono::seconds(2));
+
+		if (CaptureEngine.isOpened()) {
+			CaptureEngine.release();
+		}
 	}
 }

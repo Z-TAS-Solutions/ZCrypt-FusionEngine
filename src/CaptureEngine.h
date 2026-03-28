@@ -24,6 +24,8 @@ enum LiveFeedState {
 class ZPiCap
 {
 public:
+	ZPiCap() = default;
+
 	bool SetupGStreamerPipeline8Bit(const std::string& host, int port, StreamMode mode, bool GPUAccel, bool monochrome, cv::VideoCapture& cap);
 
 	bool SetupGStreamerPipeline10Bit(const std::string& host, int port, StreamMode mode, bool GPUAccel, bool monochrome, cv::VideoCapture& cap);
@@ -39,6 +41,15 @@ public:
 	bool OpenGStream10Bit(std::string ip, int port, StreamMode mode);
 
 	void ZPiCap::CloseStream();
+
+	bool Read();
+
+	bool ReadTo(cv::Mat& frame);
+
+	bool ForceOpenGStream8Bit(const std::string& ip, int port, StreamMode mode);
+
+	cv::Mat& GetMainFrame();
+
 
 private:
 	

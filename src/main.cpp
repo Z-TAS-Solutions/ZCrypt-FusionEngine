@@ -2,6 +2,7 @@
 #include "FusionHelper.h"
 #include "HammingDistance.h"
 #include "FusionServer.h"
+#include "CaptureEngine.h"
 
 
 #ifdef _WIN32
@@ -10,6 +11,36 @@
 #define SERVER_ADDRESS "unix:///tmp/ztas.sock"
 #define PLAIN_PATH "/tmp/ztas.sock"
 #endif
+
+#define CAPTURE_ADDRESS "192.168.1.229"
+#define CAPTURE_PORT 8888
+
+
+
+void StartFusion(ZPiCap& zcap) {
+    const cv::Mat& MainFrame = zcap.GetMainFrame();
+
+    std::cout << "[ZTAS] Starting high-speed read loop..." << std::endl;
+
+    while (true) {
+        if (zcap.Read()) {
+
+            if (MainFrame.empty()) continue;
+
+
+            cv::imshow("ZTAS Live Feed", MainFrame);
+
+        }
+        else {
+            std::cerr << "\n[ZTAS] Stream dropped. Attempting recovery..." << std::endl;
+            zcap.ForceOpenGStream8Bit(CAPTURE_ADDRESS, CAPTURE_PORT, StreamMode::TCP);
+            break;
+        }
+
+        if (cv::waitKey(1) == 'q') break;
+    }
+}
+
 
 
 int main() {
@@ -29,6 +60,10 @@ int main() {
 
     std::cout << "Hamming distance score 1: " << Score1 << "%" << std::endl;
     std::cout << "Hamming distance score 2: " << Score2 << "%" << std::endl;
+
+
+    ZPiCap CaptureEngine;
+    CaptureEngine.ForceOpenGStream8Bit(CAPTURE_ADDRESS, CAPTURE_PORT, StreamMode::TCP);
 
 
 #ifndef _WIN32

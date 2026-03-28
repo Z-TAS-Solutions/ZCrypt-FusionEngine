@@ -1,0 +1,24 @@
+^D:\WORKSPACE\REPOSITORIES\Z-TAS-SOLUTIONS\ZCRYPT-FUSIONENGINE\BUILD\CMAKEFILES\B25D16E58DB91506BA715B13F047C26E\ZFUSION.PB.CC.RULE
+setlocal
+cd D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine
+if %errorlevel% neq 0 goto :cmEnd
+D:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files (x86)\protoc-34.1-win64\bin\protoc.exe" --cpp_out=D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/generated --grpc_out=D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/generated --plugin=protoc-gen-grpc=C:/Users/super/.conan2/p/grpc4a7240c007720/p/bin/grpc_cpp_plugin.exe -I D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/src/proto D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/src/proto/zfusion.proto
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\WORKSPACE\REPOSITORIES\Z-TAS-SOLUTIONS\ZCRYPT-FUSIONENGINE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine -BD:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build --check-stamp-file D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,54 @@
+{
+    "version": 3,
+    "vendor": {
+        "conan": {}
+    },
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 15,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "conan-default",
+            "displayName": "'conan-default' config",
+            "description": "'conan-default' configure using 'Visual Studio 17 2022' generator",
+            "generator": "Visual Studio 17 2022",
+            "cacheVariables": {
+                "CMAKE_POLICY_DEFAULT_CMP0091": "NEW"
+            },
+            "toolset": {
+                "value": "v143",
+                "strategy": "external"
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "toolchainFile": "conan_toolchain.cmake",
+            "binaryDir": "D:\\Workspace\\Repositories\\Z-TAS-Solutions\\ZCrypt-FusionEngine\\build"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "conan-release",
+            "configurePreset": "conan-default",
+            "configuration": "Release",
+            "jobs": 6
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "conan-release",
+            "configurePreset": "conan-default",
+            "configuration": "Release",
+            "execution": {
+                "jobs": 6
+            },
+            "environment": {
+                "GRPC_DEFAULT_SSL_ROOTS_FILE_PATH": "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\res\\grpc\\roots.pem",
+                "OPENSSL_MODULES": "C:\\Users\\super\\.conan2\\p\\opens886fce7ed7c46\\p\\lib\\ossl-modules"
+            }
+        }
+    ]
+}

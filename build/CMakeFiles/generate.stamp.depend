@@ -1,0 +1,75 @@
+# CMake generation dependency list for this directory.
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_cpp_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_csharp_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_node_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_objective_c_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_php_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_python_plugin.cmake
+C:/Users/super/.conan2/p/grpc4a7240c007720/p/lib/cmake/conan_trick/grpc_ruby_plugin.cmake
+C:/Users/super/.conan2/p/opens886fce7ed7c46/p/lib/cmake/conan-official-openssl-variables.cmake
+C:/Users/super/.conan2/p/proto5252576ddfe0e/p/lib/cmake/protobuf/protobuf-conan-protoc-target.cmake
+C:/Users/super/.conan2/p/proto5252576ddfe0e/p/lib/cmake/protobuf/protobuf-generate.cmake
+C:/Users/super/.conan2/p/proto5252576ddfe0e/p/lib/cmake/protobuf/protobuf-module.cmake
+C:/Users/super/.conan2/p/proto5252576ddfe0e/p/lib/cmake/protobuf/protobuf-options.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/CMakeLists.txt
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/CMakeFiles/3.31.6-msvc6/CMakeCXXCompiler.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/CMakeFiles/3.31.6-msvc6/CMakeRCCompiler.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/CMakeFiles/3.31.6-msvc6/CMakeSystem.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/OpenSSL-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/OpenSSL-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/OpenSSLConfig.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/OpenSSLConfigVersion.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/OpenSSLTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/ZLIB-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/ZLIB-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/ZLIBConfig.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/ZLIBConfigVersion.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/ZLIBTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/absl-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/absl-config-version.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/absl-config.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/absl-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/abslTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/c-ares-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/c-ares-config-version.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/c-ares-config.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/c-ares-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/c-aresTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/cmakedeps_macros.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/conan_toolchain.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/gRPC-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/gRPC-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/gRPCConfig.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/gRPCConfigVersion.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/gRPCTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/protobuf-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/protobuf-config-version.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/protobuf-config.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/protobuf-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/protobufTargets.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/re2-Target-release.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/re2-config-version.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/re2-config.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/re2-release-x86_64-data.cmake
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/re2Targets.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeCXXInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeCommonLanguageInclude.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeFindDependencyMacro.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeGenericSystem.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeInitializeConfigs.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeLanguageInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeRCInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeSystemSpecificInitialize.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Compiler/MSVC-CXX.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Compiler/MSVC.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CMakeCXXLinkerInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Internal/CMakeCommonLinkerInformation.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Linker/Windows-MSVC-CXX.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Linker/Windows-MSVC.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Windows-Initialize.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC-CXX.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Windows-MSVC.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/Windows.cmake
+D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/Platform/WindowsPaths.cmake

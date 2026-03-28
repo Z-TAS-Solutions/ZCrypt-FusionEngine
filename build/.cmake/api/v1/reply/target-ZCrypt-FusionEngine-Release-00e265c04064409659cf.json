@@ -1,0 +1,1371 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "Release/ZCrypt-FusionEngine.exe"
+		},
+		{
+			"path" : "Release/ZCrypt-FusionEngine.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"set_property",
+			"include",
+			"find_package",
+			"find_dependency",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"build/gRPC-Target-release.cmake",
+			"build/gRPCTargets.cmake",
+			"build/gRPCConfig.cmake",
+			"build/protobuf-Target-release.cmake",
+			"build/protobufTargets.cmake",
+			"build/protobuf-config.cmake",
+			"D:/Workspace/Visual Studio/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.31/Modules/CMakeFindDependencyMacro.cmake",
+			"build/c-ares-Target-release.cmake",
+			"build/c-aresTargets.cmake",
+			"build/c-ares-config.cmake",
+			"build/re2-Target-release.cmake",
+			"build/re2Targets.cmake",
+			"build/re2-config.cmake",
+			"build/absl-Target-release.cmake",
+			"build/abslTargets.cmake",
+			"build/absl-config.cmake",
+			"build/OpenSSL-Target-release.cmake",
+			"build/OpenSSLTargets.cmake",
+			"build/OpenSSLConfig.cmake",
+			"build/ZLIB-Target-release.cmake",
+			"build/ZLIBTargets.cmake",
+			"build/ZLIBConfig.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 51,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 7,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 3
+			},
+			{
+				"command" : 3,
+				"file" : 3,
+				"line" : 16,
+				"parent" : 4
+			},
+			{
+				"file" : 2,
+				"parent" : 5
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 24,
+				"parent" : 6
+			},
+			{
+				"file" : 1,
+				"parent" : 7
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 373,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 24,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 10
+			},
+			{
+				"file" : 6,
+				"parent" : 11
+			},
+			{
+				"command" : 3,
+				"file" : 6,
+				"line" : 16,
+				"parent" : 12
+			},
+			{
+				"file" : 5,
+				"parent" : 13
+			},
+			{
+				"command" : 3,
+				"file" : 5,
+				"line" : 24,
+				"parent" : 14
+			},
+			{
+				"file" : 4,
+				"parent" : 15
+			},
+			{
+				"command" : 2,
+				"file" : 4,
+				"line" : 133,
+				"parent" : 16
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 553,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 24,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 19
+			},
+			{
+				"file" : 10,
+				"parent" : 20
+			},
+			{
+				"command" : 3,
+				"file" : 10,
+				"line" : 16,
+				"parent" : 21
+			},
+			{
+				"file" : 9,
+				"parent" : 22
+			},
+			{
+				"command" : 3,
+				"file" : 9,
+				"line" : 24,
+				"parent" : 23
+			},
+			{
+				"file" : 8,
+				"parent" : 24
+			},
+			{
+				"command" : 2,
+				"file" : 8,
+				"line" : 73,
+				"parent" : 25
+			},
+			{
+				"command" : 2,
+				"file" : 8,
+				"line" : 51,
+				"parent" : 25
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 793,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 24,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 29
+			},
+			{
+				"file" : 13,
+				"parent" : 30
+			},
+			{
+				"command" : 3,
+				"file" : 13,
+				"line" : 16,
+				"parent" : 31
+			},
+			{
+				"file" : 12,
+				"parent" : 32
+			},
+			{
+				"command" : 3,
+				"file" : 12,
+				"line" : 24,
+				"parent" : 33
+			},
+			{
+				"file" : 11,
+				"parent" : 34
+			},
+			{
+				"command" : 2,
+				"file" : 11,
+				"line" : 38,
+				"parent" : 35
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 613,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 24,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 38
+			},
+			{
+				"file" : 16,
+				"parent" : 39
+			},
+			{
+				"command" : 3,
+				"file" : 16,
+				"line" : 16,
+				"parent" : 40
+			},
+			{
+				"file" : 15,
+				"parent" : 41
+			},
+			{
+				"command" : 3,
+				"file" : 15,
+				"line" : 24,
+				"parent" : 42
+			},
+			{
+				"file" : 14,
+				"parent" : 43
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 493,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 733,
+				"parent" : 8
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 351,
+				"parent" : 8
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 1033,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 9253,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 373,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2053,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 433,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2113,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4393,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4993,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 6913,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4933,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2353,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2293,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2713,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3853,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4453,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8953,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3253,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4153,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3013,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3613,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7153,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7993,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8533,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8593,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 9553,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4093,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 9733,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 1393,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 6973,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 1933,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2173,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7093,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8653,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2413,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2773,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3373,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 5053,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 5713,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4033,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 2833,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 6493,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4573,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7513,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4551,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 5653,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4753,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3433,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 6013,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 3973,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4693,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8173,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 5233,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7753,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 4813,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 6793,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 7813,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 8413,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 9313,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 10513,
+				"parent" : 44
+			},
+			{
+				"command" : 2,
+				"file" : 14,
+				"line" : 10453,
+				"parent" : 44
+			},
+			{
+				"command" : 5,
+				"file" : 3,
+				"line" : 24,
+				"parent" : 4
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 108
+			},
+			{
+				"file" : 19,
+				"parent" : 109
+			},
+			{
+				"command" : 3,
+				"file" : 19,
+				"line" : 16,
+				"parent" : 110
+			},
+			{
+				"file" : 18,
+				"parent" : 111
+			},
+			{
+				"command" : 3,
+				"file" : 18,
+				"line" : 24,
+				"parent" : 112
+			},
+			{
+				"file" : 17,
+				"parent" : 113
+			},
+			{
+				"command" : 2,
+				"file" : 17,
+				"line" : 73,
+				"parent" : 114
+			},
+			{
+				"command" : 2,
+				"file" : 17,
+				"line" : 133,
+				"parent" : 114
+			},
+			{
+				"command" : 5,
+				"file" : 19,
+				"line" : 24,
+				"parent" : 110
+			},
+			{
+				"command" : 4,
+				"file" : 7,
+				"line" : 76,
+				"parent" : 117
+			},
+			{
+				"file" : 22,
+				"parent" : 118
+			},
+			{
+				"command" : 3,
+				"file" : 22,
+				"line" : 16,
+				"parent" : 119
+			},
+			{
+				"file" : 21,
+				"parent" : 120
+			},
+			{
+				"command" : 3,
+				"file" : 21,
+				"line" : 24,
+				"parent" : 121
+			},
+			{
+				"file" : 20,
+				"parent" : 122
+			},
+			{
+				"command" : 2,
+				"file" : 20,
+				"line" : 38,
+				"parent" : 123
+			},
+			{
+				"command" : 2,
+				"file" : 17,
+				"line" : 111,
+				"parent" : 114
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 46,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/MP6 /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "CARES_STATICLIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 126,
+					"path" : "D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/src"
+				},
+				{
+					"backtrace" : 126,
+					"path" : "D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/generated"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/super/.conan2/p/grpc4a7240c007720/p/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/super/.conan2/p/proto5252576ddfe0e/p/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/super/.conan2/p/zlibfaa27933c9bf2/p/include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "C:/Users/super/.conan2/p/abseif00fccdbb8e36/p/include"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "17"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "ZCrypt-FusionEngine::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/MP6 /DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\proto5252576ddfe0e\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\zlibfaa27933c9bf2\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\c-are771b7af4ed8c9\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\re2756daa9c0b34e\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\Users\\super\\.conan2\\p\\opens886fce7ed7c46\\p\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 9,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib\\grpc++.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 17,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\proto5252576ddfe0e\\p\\lib\\libprotobuf.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 18,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib\\grpc.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 26,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\c-are771b7af4ed8c9\\p\\lib\\cares.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 27,
+				"fragment" : "iphlpapi.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 28,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib\\address_sorting.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 36,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\re2756daa9c0b34e\\p\\lib\\re2.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 37,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib\\upb.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 45,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_statusor.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 46,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\grpc4a7240c007720\\p\\lib\\gpr.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 47,
+				"fragment" : "wsock32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 48,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_status.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 49,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_strerror.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 50,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 51,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 52,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_reflection.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 53,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_raw_hash_set.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 54,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_hash.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 55,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_city.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 56,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_bad_variant_access.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 57,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_low_level_hash.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 58,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_hashtablez_sampler.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 59,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_config.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 60,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_program_name.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 61,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_private_handle_accessor.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 62,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_commandlineflag.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 63,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_commandlineflag_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 64,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_flags_marshalling.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 65,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_distributions.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 66,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_seed_sequences.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 67,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_pool_urbg.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 68,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_randen.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 69,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_randen_hwaes.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 70,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_randen_hwaes_impl.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 71,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_randen_slow.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 72,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_platform.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 73,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_internal_seed_material.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 74,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_random_seed_gen_exception.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 75,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_cord.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 76,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_bad_optional_access.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 77,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_cordz_info.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 78,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_cord_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 79,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_cordz_functions.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 80,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_exponential_biased.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 81,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_cordz_handle.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 82,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_crc_cord_state.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 83,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_crc32c.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 84,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_crc_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 85,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_crc_cpu_detect.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 86,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_str_format_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 87,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_synchronization.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 88,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_stacktrace.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 89,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_symbolize.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 90,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_debugging_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 91,
+				"fragment" : "dbghelp.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 92,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_demangle_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 93,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_graphcycles_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 94,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_kernel_timeout_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 95,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_malloc_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 96,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_time.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 97,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_strings.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 98,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_int128.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 99,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_string_view.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 100,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_throw_delegate.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 101,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_strings_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 102,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_base.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 103,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_spinlock_wait.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 104,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_raw_logging_internal.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 105,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_log_severity.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 106,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_civil_time.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 107,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\abseif00fccdbb8e36\\p\\lib\\absl_time_zone.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 115,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\opens886fce7ed7c46\\p\\lib\\libssl.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 116,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\opens886fce7ed7c46\\p\\lib\\libcrypto.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 47,
+				"fragment" : "crypt32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 47,
+				"fragment" : "ws2_32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 124,
+				"fragment" : "C:\\Users\\super\\.conan2\\p\\zlibfaa27933c9bf2\\p\\lib\\zlib.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 27,
+				"fragment" : "advapi32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 125,
+				"fragment" : "user32.lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 125,
+				"fragment" : "bcrypt.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "ZCrypt-FusionEngine",
+	"nameOnDisk" : "ZCrypt-FusionEngine.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				6
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/FusionServer.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/HammingDistance.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/CaptureEngine.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/generated/zfusion.pb.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/generated/zfusion.grpc.pb.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/CMakeFiles/b25d16e58db91506ba715b13f047c26e/zfusion.pb.cc.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}

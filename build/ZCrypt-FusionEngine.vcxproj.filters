@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\FusionServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\HammingDistance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\CaptureEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.grpc.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\CMakeFiles\b25d16e58db91506ba715b13f047c26e\zfusion.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{60270917-3D34-3A57-A871-4704EDD3EB2B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{9E738F38-708E-3938-936A-C08D95D558D6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

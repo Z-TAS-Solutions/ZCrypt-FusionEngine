@@ -1,6 +1,7 @@
 #include <iostream>
 #include "FusionHelper.h"
 #include "HammingDistance.h"
+#include "FusionServer.h"
 
 int main() {
     BiometricTemplate TemplateA1, TemplateB1;
@@ -20,8 +21,13 @@ int main() {
     std::cout << "Hamming distance score 1: " << Score1 << "%" << std::endl;
     std::cout << "Hamming distance score 2: " << Score2 << "%" << std::endl;
 
+    std::string ServerAddress = "unix:///tmp/zfusion.sock";
 
+    std::cout << "Starting GStreamer capture ..." << std::endl;
 
+    FusionGrpcServer ZCapIPC(ServerAddress);
+
+    ZCapIPC.Wait();
 
     return 0;
 }

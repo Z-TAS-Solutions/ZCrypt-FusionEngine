@@ -1,0 +1,24 @@
+MSBuild version 17.14.18+a338add32 for .NET Framework
+
+  Generating generated/zfusion.pb.cc, generated/zfusion.pb.h, generated/zfusion.grpc.pb.cc, generated/zfusion.grpc.pb.h
+  main.cpp
+  FusionServer.cpp
+  HammingDistance.cpp
+  CaptureEngine.cpp
+  zfusion.pb.cc
+  zfusion.grpc.pb.cc
+D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\CaptureEngine.h(6,10): error C1083: Cannot open include file: 'opencv2/opencv.hpp': No such file or directory [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]
+  (compiling source file '../src/CaptureEngine.cpp')
+  
+D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.pb.h(15,10): error C1083: Cannot open include file: 'google/protobuf/runtime_version.h': No such file or directory [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]
+  (compiling source file 'generated/zfusion.grpc.pb.cc')
+  
+D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.pb.h(15,10): error C1083: Cannot open include file: 'google/protobuf/runtime_version.h': No such file or directory [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]
+  (compiling source file 'generated/zfusion.pb.cc')
+  
+D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.pb.h(15,10): error C1083: Cannot open include file: 'google/protobuf/runtime_version.h': No such file or directory [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]
+  (compiling source file '../src/FusionServer.cpp')
+  
+D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\generated\zfusion.pb.h(15,10): error C1083: Cannot open include file: 'google/protobuf/runtime_version.h': No such file or directory [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]
+  (compiling source file '../src/main.cpp')
+  

@@ -131,13 +131,14 @@ const char descriptor_table_protodef_zfusion_2eproto[] ABSL_ATTRIBUTE_SECTION_VA
     "\r\n\tPHASE_ROI\020\000\022\020\n\014PHASE_FUSION\020\0012^\n\024Fusi"
     "onCaptureService\022F\n\rFusionCapture\022\027.zfus"
     "ion.ZFusionRequest\032\030.zfusion.ZFusionResp"
-    "onse\"\0000\001b\006proto3"
+    "onse\"\0000\001B\036Z\034./internal/pkg/zfusionproto/"
+    "b\006proto3"
 };
 static ::absl::once_flag descriptor_table_zfusion_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_zfusion_2eproto = {
     false,
     false,
-    336,
+    368,
     descriptor_table_protodef_zfusion_2eproto,
     "zfusion.proto",
     &descriptor_table_zfusion_2eproto_once,

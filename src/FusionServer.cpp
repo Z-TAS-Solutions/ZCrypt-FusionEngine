@@ -8,48 +8,51 @@ using grpc::ServerWriter;
 using grpc::Status;
 using zfusion::ZFusionRequest;
 using zfusion::ZFusionResponse;
-using zfusion::FusionCaptureService;
 
-FusionServerImpl::FusionServerImpl() {}
+
+
+FusionServerImpl::FusionServerImpl(ZPiCap& CaptureEngine) : ZPiCapture(CaptureEngine) {}
+
 FusionServerImpl::~FusionServerImpl() {}
 
-Status
-FusionServerImpl::FusionCapture(ServerContext *context,
-                                const ZFusionRequest *request,
-                                ServerWriter<ZFusionResponse> *writer) {
-  std::cout << "Received ZFusionRequest for Session ID: "
-            << request->session_id() << std::endl;
+Status FusionServerImpl::FusionCapture(ServerContext* context,
+    const ZFusionRequest* request,
+    ServerWriter<ZFusionResponse>* writer) {
 
+    std::cout << "Received ZFusionRequest: " << request->session_id() << std::endl;
 
-  ZFusionResponse response_roi;
-  response_roi.set_completion_phase(ZFusionResponse::PHASE_ROI);
-  response_roi.set_status_message(
-      "ROI Located and Captured in native pipeline.");
-  writer->Write(response_roi);
+    if (!RunZROI(this->ZPiCapture, 10000)) {
+        return Status(grpc::StatusCode::DEADLINE_EXCEEDED, "Palm not detected.");
+    }
 
+    ZFusionResponse ROIResponse;
+    ROIResponse.set_completion_phase(zfusion::ZFusionResponse_PHASE_PHASE_ROI);
+    ROIResponse.set_status_message("Palm ROI Located...");
+    writer->Write(ROIResponse);
 
-  ZFusionResponse response_fusion;
-  response_fusion.set_completion_phase(ZFusionResponse::PHASE_FUSION);
-  std::string dummy_bitstream =
-      "\x01\x02\x03\x04\x05";
-  response_fusion.set_fusion_bitstream(dummy_bitstream);
-  response_fusion.set_status_message("Feature Extraction Successful.");
-  writer->Write(response_fusion);
+    std::string FusionPayload = "";
 
-  return Status::OK;
+    ZFusionResponse FusionResponse;
+    FusionResponse.set_completion_phase(zfusion::ZFusionResponse_PHASE_PHASE_FUSION);
+    FusionResponse.set_fusion_bitstream(FusionPayload);
+    FusionResponse.set_status_message("Feature Extraction Successful.");
+    writer->Write(FusionResponse);
+
+    return Status::OK;
 }
 
 
+FusionGrpcServer::FusionGrpcServer(ZPiCap& CaptureEngine, const std::string& address)
+    : ServerAddress(address),
+    FusionService(CaptureEngine)
+{
+    ServerBuilder builder;
 
-FusionGrpcServer::FusionGrpcServer(const std::string &address) : ServerAddress(address) {
-  ServerBuilder builder;
+    builder.AddListeningPort(ServerAddress, grpc::InsecureServerCredentials());
+    builder.RegisterService(&FusionService);
 
-  builder.AddListeningPort(ServerAddress, grpc::InsecureServerCredentials());
-  builder.RegisterService(&FusionService);
-
-  FusionServer = builder.BuildAndStart();
-  std::cout << "ZCrypt-FusionEngine gRPC Server listening on "
-            << ServerAddress << std::endl;
+    FusionServer = builder.BuildAndStart();
+    std::cout << "ZCrypt-FusionEngine gRPC Server listening on " << ServerAddress << std::endl;
 }
 
 FusionGrpcServer::~FusionGrpcServer() { Stop(); }
@@ -59,16 +62,16 @@ void FusionGrpcServer::RunAsync() {
 }
 
 void FusionGrpcServer::Wait() {
-  if (FusionServer) {
-      FusionServer->Wait();
-  }
+    if (FusionServer) {
+        FusionServer->Wait();
+    }
 }
 
 void FusionGrpcServer::Stop() {
-  if (FusionServer) {
-      FusionServer->Shutdown();
-  }
-  if (FusionThread.joinable()) {
-      FusionThread.join();
-  }
+    if (FusionServer) {
+        FusionServer->Shutdown();
+    }
+    if (FusionThread.joinable()) {
+        FusionThread.join();
+    }
 }

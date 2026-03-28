@@ -19,6 +19,9 @@
     <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\build\generated\zfusion.grpc.pb.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\src\ZFusionCore.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\CMakeLists.txt" />

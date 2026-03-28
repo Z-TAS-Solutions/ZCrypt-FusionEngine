@@ -214,27 +214,26 @@ bool ZPiCap::ReadTo(cv::Mat& frame) {
 
 
 bool ZPiCap::ForceOpenGStream8Bit(const std::string& ip, int port, StreamMode mode) {
-	std::string url = GenerateStreamURL(mode, ip, port);
 	int retryCount = 0;
 
-	std::cout << "[ZTAS] Attempting to connect to: " << url << std::endl;
-
 	while (true) {
-		if (SetupGStreamerPipeline8Bit(ip, port, mode, true, true, CaptureEngine)) {
+		if (SetupGStreamerPipeline8Bit(ip, port, mode, false, true, CaptureEngine)) {
+
 			if (CaptureEngine.isOpened()) {
-				std::cout << "\n[ZTAS] Connection Established! Stream is LIVE." << std::endl;
-				LiveFeedStatus = LiveFeedState::READY;
-				return true;
+
+				cv::Mat testFrame;
+				if (CaptureEngine.read(testFrame) && !testFrame.empty()) {
+					std::cout << "\n[ZTAS] Connection Established & Verified! Stream is LIVE." << std::endl;
+					LiveFeedStatus = LiveFeedState::READY;
+					return true;
+				}
 			}
 		}
 
 		retryCount++;
-		std::cout << "\r[ZTAS] Connection failed. Retry #" << retryCount << " (Searching for Pi...)" << std::flush;
+		std::cout << "\r[ZTAS] Connection unstable. Retry #" << retryCount << " (Verifying Pi Signal...)" << std::flush;
 
+		CaptureEngine.release();
 		std::this_thread::sleep_for(std::chrono::seconds(2));
-
-		if (CaptureEngine.isOpened()) {
-			CaptureEngine.release();
-		}
 	}
 }

@@ -3,6 +3,9 @@
 #include "zfusion.grpc.pb.h"
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/server_builder.h>
+
+#include "ZFusionCore.h"
+
 #include <memory>
 #include <string>
 #include <thread>
@@ -10,7 +13,7 @@
 
 class FusionServerImpl final : public zfusion::FusionCaptureService::Service {
 public:
-	FusionServerImpl();
+	explicit FusionServerImpl(ZPiCap& CaptureEngine);
     ~FusionServerImpl() override;
 
 	grpc::Status FusionCapture(
@@ -18,11 +21,14 @@ public:
 		const zfusion::ZFusionRequest* request,
 		grpc::ServerWriter<zfusion::ZFusionResponse>* writer
 	) override;
+
+private:
+	ZPiCap& ZPiCapture;
 };
 
 class FusionGrpcServer {
 public:
-	FusionGrpcServer(const std::string& address = "unix:///tmp/zfusion.sock");
+	FusionGrpcServer(ZPiCap& CaptureEngine, const std::string& address = "unix:///tmp/zfusion.sock");
 	~FusionGrpcServer();
 
 	void RunAsync();

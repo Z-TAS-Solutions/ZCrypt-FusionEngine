@@ -52,8 +52,26 @@ set(APP_SOURCES
     src/CaptureEngine.cpp
 )
 
-add_executable(ZCrypt-FusionEngine ${APP_SOURCES} ${PROTO_SRC} ${GRPC_SRC})
+add_executable(ZCrypt-FusionEngine ${APP_SOURCES} ${PROTO_SRC} ${GRPC_SRC} "src/ZFusionCore.cpp")
 add_dependencies(ZCrypt-FusionEngine proto_gen)
+
+target_compile_definitions(ZCrypt-FusionEngine PUBLIC 
+    $<$<CONFIG:Debug>:ZSCAN_BUILD_DEBUG>
+    $<$<CONFIG:Release>:ZSCAN_BUILD_RELEASE>
+)
+    
+
+set(DLL_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/dll/$<CONFIG>/${ARCH}")
+
+add_custom_command(
+    TARGET ZCrypt-FusionEngine 
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${DLL_SOURCE_DIR}"
+        "$<TARGET_FILE_DIR:ZCrypt-FusionEngine>"
+    COMMENT "Copying ZTAS Runtime DLLs for ${ARCH} ($<CONFIG>) to build directory..."
+)
+
 
 target_include_directories(ZCrypt-FusionEngine PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/src

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\build\CMakeFiles\f08c2d61bd5d54b77cb172a55db530d0\zfusion.pb.cc.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\build\CMakeFiles\c146e4a1ad42c8b866627d999eb04a77\proto_gen.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\build\CMakeFiles\proto_gen" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DCF6C620-D79C-3C87-83ED-6536EC375D83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,4 @@
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/build/CMakeFiles/proto_gen.dir
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/build/CMakeFiles/ZCrypt-FusionEngine.dir
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/build/CMakeFiles/ALL_BUILD.dir
+D:/Workspace/Repositories/Z-TAS-Solutions/ZCrypt-FusionEngine/build/build/CMakeFiles/ZERO_CHECK.dir

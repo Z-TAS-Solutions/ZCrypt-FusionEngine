@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\build\CMakeFiles\c146e4a1ad42c8b866627d999eb04a77\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DCF6C620-D79C-3C87-83ED-6536EC375D83}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

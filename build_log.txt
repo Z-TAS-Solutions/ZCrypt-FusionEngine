@@ -1,5 +1,0 @@
-MSBuild version 17.14.18+a338add32 for .NET Framework
-
-  Generating generated/zfusion.pb.cc, generated/zfusion.pb.h, generated/zfusion.grpc.pb.cc, generated/zfusion.grpc.pb.h
-  --cpp_out: Unknown generator option: "D
-D:\Workspace\Visual Studio\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(254,5): error MSB8066: Custom build for 'D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\CMakeFiles\b25d16e58db91506ba715b13f047c26e\zfusion.pb.cc.rule' exited with code 1. [D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\ZCrypt-FusionEngine.vcxproj]

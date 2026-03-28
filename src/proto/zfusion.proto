@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package zfusion;
 
+
 message ZFusionRequest {
     string session_id = 1;
 }

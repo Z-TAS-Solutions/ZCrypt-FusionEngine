@@ -3,6 +3,15 @@
 #include "HammingDistance.h"
 #include "FusionServer.h"
 
+
+#ifdef _WIN32
+#define SERVER_ADDRESS "127.0.0.1:50051"
+#else
+#define SERVER_ADDRESS "unix:///tmp/ztas.sock"
+#define PLAIN_PATH "/tmp/ztas.sock"
+#endif
+
+
 int main() {
     BiometricTemplate TemplateA1, TemplateB1;
     GenerateTemplatePair(TemplateA1, TemplateB1, 0.95);
@@ -21,11 +30,16 @@ int main() {
     std::cout << "Hamming distance score 1: " << Score1 << "%" << std::endl;
     std::cout << "Hamming distance score 2: " << Score2 << "%" << std::endl;
 
-    std::string ServerAddress = "unix:///tmp/zfusion.sock";
+
+#ifndef _WIN32
+    if (std::filesystem::exists(PLAIN_PATH)) {
+        std::filesystem::remove(PLAIN_PATH);
+    }
+#endif
 
     std::cout << "Starting GStreamer capture ..." << std::endl;
 
-    FusionGrpcServer ZCapIPC(ServerAddress);
+    FusionGrpcServer ZCapIPC(SERVER_ADDRESS);
 
     ZCapIPC.Wait();
 

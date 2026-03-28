@@ -21,9 +21,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\build\CMakeFiles\b25d16e58db91506ba715b13f047c26e\zfusion.pb.cc.rule">
-      <Filter>CMake Rules</Filter>
-    </CustomBuild>
     <CustomBuild Include="D:\Workspace\Repositories\Z-TAS-Solutions\ZCrypt-FusionEngine\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>

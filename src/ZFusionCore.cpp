@@ -20,7 +20,7 @@ bool RunZROI(ZPiCap& zcap, int timeout_ms) {
 
         if (zcap.Read()) {
             if (liveFrame.empty()) continue;
-
+            
             std::cout << "[Fusion] Starting ROI Capture." << std::endl;
 
             return true;
@@ -41,7 +41,7 @@ std::string RunZFusion(ZPiCap& zcap, int timeout_ms) {
     auto start_time = std::chrono::steady_clock::now();
     const cv::Mat& liveFrame = zcap.GetMainFrame();
 
-    std::cout << "[Fusion] Starting biometric capture sequence..." << std::endl;
+    std::cout << "[Fusion] Starting Fusion Sequence..." << std::endl;
 
     while (true) {
         auto current_time = std::chrono::steady_clock::now();

@@ -9,6 +9,7 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <chrono>
 
 
 class FusionServerImpl final : public zfusion::FusionCaptureService::Service {

@@ -21,21 +21,27 @@ Status FusionServerImpl::FusionCapture(ServerContext* context,
 
     std::cout << "Received ZFusionRequest: " << request->session_id() << std::endl;
 
-    if (!RunZROI(this->ZPiCapture, 10000)) {
+    bool Result = RunZROI(this->ZPiCapture, 10000);
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+
+    if (!Result) {
         return Status(grpc::StatusCode::DEADLINE_EXCEEDED, "Palm not detected.");
     }
 
     ZFusionResponse ROIResponse;
     ROIResponse.set_completion_phase(zfusion::ZFusionResponse_PHASE_PHASE_ROI);
-    ROIResponse.set_status_message("Palm ROI Located...");
+    ROIResponse.set_status_message(Result ? "ROI_SUCCESS" : "ROI_FAIL");
     writer->Write(ROIResponse);
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 
     std::string FusionPayload = "";
 
     ZFusionResponse FusionResponse;
     FusionResponse.set_completion_phase(zfusion::ZFusionResponse_PHASE_PHASE_FUSION);
     FusionResponse.set_fusion_bitstream(FusionPayload);
-    FusionResponse.set_status_message("Feature Extraction Successful.");
+    FusionResponse.set_status_message("FUSION_SUCCESS");
     writer->Write(FusionResponse);
 
     return Status::OK;

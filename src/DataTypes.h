@@ -8,7 +8,7 @@ constexpr int TEMPLATE_SIZE = 1024;
 
 struct BiometricTemplate {
     uint8_t Data[TEMPLATE_SIZE];
-    uint32_t GroupingIndex;
+    uint32_t GroupingIndex; 
 
     BiometricTemplate()
         : GroupingIndex(0) {

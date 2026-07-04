@@ -57,7 +57,7 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "$<$<CONFIG:Release>:MultiThreadedDLL>")
 # if the file exists it will be loaded by FindFiles block and the variable defined there
 if(NOT EXISTS "${CMAKE_CURRENT_LIST_DIR}/conan_cmakedeps_paths.cmake")
 # This variable requires CMake>=3.27 to work
-set(CMAKE_VS_DEBUGGER_ENVIRONMENT "PATH=$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/grpc7dbefd30ba009/p/bin;C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/bin;C:/Users/zischl/.conan2/p/re2a3b8bcfd06b05/p/bin;C:/Users/zischl/.conan2/p/absei9416d7b25ff2f/p/bin;C:/Users/zischl/.conan2/p/c-are771b7af4ed8c9/p/bin;C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/bin;C:/Users/zischl/.conan2/p/zlibfaa27933c9bf2/p/bin>;%PATH%")
+set(CMAKE_VS_DEBUGGER_ENVIRONMENT "PATH=$<$<CONFIG:Release>:C:/Users/super/.conan2/p/grpc7dbefd30ba009/p/bin;C:/Users/super/.conan2/p/protoc472b13a733fc/p/bin;C:/Users/super/.conan2/p/re2a3b8bcfd06b05/p/bin;C:/Users/super/.conan2/p/absei9416d7b25ff2f/p/bin;C:/Users/super/.conan2/p/c-are771b7af4ed8c9/p/bin;C:/Users/super/.conan2/p/opens162a9367fb2bf/p/bin;C:/Users/super/.conan2/p/zlib7bebe3ea4afa6/p/bin>;%PATH%")
 endif()
 
 
@@ -85,8 +85,8 @@ variable_watch(CMAKE_CXX_STANDARD conan_modify_std_watch)
 ########## 'parallel' block #############
 # Define VS paralell build /MP flags
 
-string(APPEND CONAN_CXX_FLAGS " /MP20")
-string(APPEND CONAN_C_FLAGS " /MP20")
+string(APPEND CONAN_CXX_FLAGS " /MP6")
+string(APPEND CONAN_C_FLAGS " /MP6")
 
 
 ########## 'extra_flags' block #############
@@ -166,18 +166,18 @@ else()
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 
 # Definition of CMAKE_MODULE_PATH
-list(PREPEND CMAKE_MODULE_PATH "C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/lib/cmake/protobuf" "C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/lib/cmake")
+list(PREPEND CMAKE_MODULE_PATH "C:/Users/super/.conan2/p/protoc472b13a733fc/p/lib/cmake/protobuf" "C:/Users/super/.conan2/p/opens162a9367fb2bf/p/lib/cmake")
 # the generators folder (where conan generates files, like this toolchain)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_LIST_DIR})
 
 # Definition of CMAKE_PREFIX_PATH, CMAKE_XXXXX_PATH
 # The explicitly defined "builddirs" of "host" context dependencies must be in PREFIX_PATH
-list(PREPEND CMAKE_PREFIX_PATH "C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/lib/cmake/protobuf" "C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/lib/cmake")
+list(PREPEND CMAKE_PREFIX_PATH "C:/Users/super/.conan2/p/protoc472b13a733fc/p/lib/cmake/protobuf" "C:/Users/super/.conan2/p/opens162a9367fb2bf/p/lib/cmake")
 # The Conan local "generators" folder, where this toolchain is saved.
 list(PREPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_LIST_DIR} )
-list(PREPEND CMAKE_LIBRARY_PATH "C:/Users/zischl/.conan2/p/grpc7dbefd30ba009/p/lib" "C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/lib" "C:/Users/zischl/.conan2/p/re2a3b8bcfd06b05/p/lib" "C:/Users/zischl/.conan2/p/absei9416d7b25ff2f/p/lib" "C:/Users/zischl/.conan2/p/c-are771b7af4ed8c9/p/lib" "C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/lib" "C:/Users/zischl/.conan2/p/zlibfaa27933c9bf2/p/lib")
-list(PREPEND CMAKE_INCLUDE_PATH "C:/Users/zischl/.conan2/p/grpc7dbefd30ba009/p/include" "C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/include" "C:/Users/zischl/.conan2/p/re2a3b8bcfd06b05/p/include" "C:/Users/zischl/.conan2/p/absei9416d7b25ff2f/p/include" "C:/Users/zischl/.conan2/p/c-are771b7af4ed8c9/p/include" "C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/include" "C:/Users/zischl/.conan2/p/zlibfaa27933c9bf2/p/include")
-set(CONAN_RUNTIME_LIB_DIRS "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/grpc7dbefd30ba009/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/re2a3b8bcfd06b05/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/absei9416d7b25ff2f/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/c-are771b7af4ed8c9/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/opens886fce7ed7c46/p/bin>" "$<$<CONFIG:Release>:C:/Users/zischl/.conan2/p/zlibfaa27933c9bf2/p/bin>" )
+list(PREPEND CMAKE_LIBRARY_PATH "C:/Users/super/.conan2/p/grpc7dbefd30ba009/p/lib" "C:/Users/super/.conan2/p/protoc472b13a733fc/p/lib" "C:/Users/super/.conan2/p/re2a3b8bcfd06b05/p/lib" "C:/Users/super/.conan2/p/absei9416d7b25ff2f/p/lib" "C:/Users/super/.conan2/p/c-are771b7af4ed8c9/p/lib" "C:/Users/super/.conan2/p/opens162a9367fb2bf/p/lib" "C:/Users/super/.conan2/p/zlib7bebe3ea4afa6/p/lib")
+list(PREPEND CMAKE_INCLUDE_PATH "C:/Users/super/.conan2/p/grpc7dbefd30ba009/p/include" "C:/Users/super/.conan2/p/protoc472b13a733fc/p/include" "C:/Users/super/.conan2/p/re2a3b8bcfd06b05/p/include" "C:/Users/super/.conan2/p/absei9416d7b25ff2f/p/include" "C:/Users/super/.conan2/p/c-are771b7af4ed8c9/p/include" "C:/Users/super/.conan2/p/opens162a9367fb2bf/p/include" "C:/Users/super/.conan2/p/zlib7bebe3ea4afa6/p/include")
+set(CONAN_RUNTIME_LIB_DIRS "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/grpc7dbefd30ba009/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/protoc472b13a733fc/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/re2a3b8bcfd06b05/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/absei9416d7b25ff2f/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/c-are771b7af4ed8c9/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/opens162a9367fb2bf/p/bin>" "$<$<CONFIG:Release>:C:/Users/super/.conan2/p/zlib7bebe3ea4afa6/p/bin>" )
 
 endif()
 

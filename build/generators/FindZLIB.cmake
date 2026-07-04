@@ -25,7 +25,7 @@ foreach(_DEPENDENCY ${zlib_FIND_DEPENDENCY_NAMES} )
     endif()
 endforeach()
 
-set(ZLIB_VERSION_STRING "1.3.1")
+set(ZLIB_VERSION_STRING "1.3.2")
 set(ZLIB_INCLUDE_DIRS ${zlib_INCLUDE_DIRS_RELEASE} )
 set(ZLIB_INCLUDE_DIR ${zlib_INCLUDE_DIRS_RELEASE} )
 set(ZLIB_LIBRARIES ${zlib_LIBRARIES_RELEASE} )
@@ -44,7 +44,7 @@ endforeach()
 
 include(FindPackageHandleStandardArgs)
 set(ZLIB_FOUND 1)
-set(ZLIB_VERSION "1.3.1")
+set(ZLIB_VERSION "1.3.2")
 
 find_package_handle_standard_args(ZLIB
                                   REQUIRED_VARS ZLIB_VERSION
@@ -52,6 +52,6 @@ find_package_handle_standard_args(ZLIB
 mark_as_advanced(ZLIB_FOUND ZLIB_VERSION)
 
 set(ZLIB_FOUND 1)
-set(ZLIB_VERSION "1.3.1")
+set(ZLIB_VERSION "1.3.2")
 mark_as_advanced(ZLIB_FOUND ZLIB_VERSION)
 

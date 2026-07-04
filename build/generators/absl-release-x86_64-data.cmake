@@ -12,7 +12,7 @@ endif()
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(abseil_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/absei9416d7b25ff2f/p")
+set(abseil_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/absei9416d7b25ff2f/p")
 set(abseil_BUILD_MODULES_PATHS_RELEASE )
 
 

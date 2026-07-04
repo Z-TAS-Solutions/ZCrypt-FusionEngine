@@ -18,7 +18,7 @@ set(ZLIB_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(grpc_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/grpc7dbefd30ba009/p")
+set(grpc_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/grpc7dbefd30ba009/p")
 set(grpc_BUILD_MODULES_PATHS_RELEASE "${grpc_PACKAGE_FOLDER_RELEASE}/lib/cmake/conan_trick/grpc_cpp_plugin.cmake"
 			"${grpc_PACKAGE_FOLDER_RELEASE}/lib/cmake/conan_trick/grpc_csharp_plugin.cmake"
 			"${grpc_PACKAGE_FOLDER_RELEASE}/lib/cmake/conan_trick/grpc_node_plugin.cmake"

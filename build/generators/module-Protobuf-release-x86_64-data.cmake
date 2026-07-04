@@ -14,7 +14,7 @@ set(ZLIB_FIND_MODE "MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(protobuf_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/proto6443e0b5a6574/p")
+set(protobuf_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/protoc472b13a733fc/p")
 set(protobuf_BUILD_MODULES_PATHS_RELEASE "${protobuf_PACKAGE_FOLDER_RELEASE}/lib/cmake/protobuf/protobuf-generate.cmake"
 			"${protobuf_PACKAGE_FOLDER_RELEASE}/lib/cmake/protobuf/protobuf-module.cmake"
 			"${protobuf_PACKAGE_FOLDER_RELEASE}/lib/cmake/protobuf/protobuf-options.cmake"

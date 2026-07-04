@@ -11,7 +11,7 @@ endif()
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(zlib_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/zlibfaa27933c9bf2/p")
+set(zlib_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/zlib7bebe3ea4afa6/p")
 set(zlib_BUILD_MODULES_PATHS_RELEASE )
 
 

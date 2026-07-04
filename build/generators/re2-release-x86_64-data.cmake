@@ -12,7 +12,7 @@ set(absl_FIND_MODE "NO_MODULE")
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(re2_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/re2a3b8bcfd06b05/p")
+set(re2_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/re2a3b8bcfd06b05/p")
 set(re2_BUILD_MODULES_PATHS_RELEASE )
 
 

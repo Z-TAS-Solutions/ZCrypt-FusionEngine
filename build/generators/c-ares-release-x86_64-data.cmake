@@ -12,7 +12,7 @@ endif()
 
 ########### VARIABLES #######################################################################
 #############################################################################################
-set(c-ares_PACKAGE_FOLDER_RELEASE "C:/Users/zischl/.conan2/p/c-are771b7af4ed8c9/p")
+set(c-ares_PACKAGE_FOLDER_RELEASE "C:/Users/super/.conan2/p/c-are771b7af4ed8c9/p")
 set(c-ares_BUILD_MODULES_PATHS_RELEASE )
 
 

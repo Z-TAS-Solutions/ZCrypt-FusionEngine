@@ -23,5 +23,5 @@ endlocal
 
 
 
-set "GRPC_DEFAULT_SSL_ROOTS_FILE_PATH=C:\Users\zischl\.conan2\p\grpc7dbefd30ba009\p\res\grpc\roots.pem"
-set "OPENSSL_MODULES=C:\Users\zischl\.conan2\p\opens886fce7ed7c46\p\lib\ossl-modules"
+set "GRPC_DEFAULT_SSL_ROOTS_FILE_PATH=C:\Users\super\.conan2\p\grpc7dbefd30ba009\p\res\grpc\roots.pem"
+set "OPENSSL_MODULES=C:\Users\super\.conan2\p\opens162a9367fb2bf\p\lib\ossl-modules"

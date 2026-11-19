@@ -1,557 +1,360 @@
-
 #include "ZCore.h"
 
-void ApplyLbp(const cv::Mat& src, cv::Mat& dst) {
-	dst = cv::Mat::zeros(src.rows - 2, src.cols - 2, CV_8UC1);
-	for (int i = 1; i < src.rows - 1; i++) {
-		for (int j = 1; j < src.cols - 1; j++) {
-			uchar center = src.at<uchar>(i, j);
-			uchar code = 0;
-			code |= (src.at<uchar>(i - 1, j - 1) >= center) << 7;
-			code |= (src.at<uchar>(i - 1, j) >= center) << 6;
-			code |= (src.at<uchar>(i - 1, j + 1) >= center) << 5;
-			code |= (src.at<uchar>(i, j + 1) >= center) << 4;
-			code |= (src.at<uchar>(i + 1, j + 1) >= center) << 3;
-			code |= (src.at<uchar>(i + 1, j) >= center) << 2;
-			code |= (src.at<uchar>(i + 1, j - 1) >= center) << 1;
-			code |= (src.at<uchar>(i, j - 1) >= center) << 0;
-			dst.at<uchar>(i - 1, j - 1) = code;
-		}
-	}
-}
-
-
-std::vector<cv::Mat> InitializeGaborBank() {
-	std::vector<cv::Mat> Bank;
-	int NumOrientations = 6;
-
-	int KSize = 15;
-	double Sigma = 3.0;
-	double Lambda = 10.0;
-	double Gamma = 0.5;
-
-	for (int I = 0; I < NumOrientations; I++) {
-		double Theta = I * CV_PI / NumOrientations;
-
-		cv::Mat Kernel = cv::getGaborKernel(
-			cv::Size(KSize, KSize),
-			Sigma,
-			Theta,
-			Lambda,
-			Gamma,
-			0,
-			CV_32F
-		);
-		Bank.push_back(Kernel);
-	}
-	return Bank;
-}
-
-
-void ExtractCompCode(const cv::Mat& Src, const std::vector<cv::Mat>& GaborBank, cv::Mat& Dest) {
-	cv::Mat SrcFloat, InvertedSrc;
-
-	cv::bitwise_not(Src, InvertedSrc);
-	InvertedSrc.convertTo(SrcFloat, CV_32F);
-
-	cv::Mat MaxResponse = cv::Mat::zeros(SrcFloat.size(), CV_32F);
-	Dest = cv::Mat::zeros(SrcFloat.size(), CV_8UC1);
-
-	for (int I = 0; I < GaborBank.size(); I++) {
-		cv::Mat Response;
-		cv::filter2D(SrcFloat, Response, CV_32F, GaborBank[I]);
-
-		for (int Y = 0; Y < SrcFloat.rows; Y++) {
-			const float* RespRow = Response.ptr<float>(Y);
-			float* MaxRow = MaxResponse.ptr<float>(Y);
-			uchar* DestRow = Dest.ptr<uchar>(Y);
-
-			for (int X = 0; X < SrcFloat.cols; X++) {
-				if (RespRow[X] > MaxRow[X]) {
-					MaxRow[X] = RespRow[X];
-					DestRow[X] = I;
-				}
-			}
-		}
-	}
-}
-
-
-void VisualizeCompCode(const cv::Mat& Src, const cv::Mat& Dest) {
-	Src.convertTo(Dest, CV_8UC1, 50);
-}
-
-
-void ExtractVeinSkeleton(const cv::Mat& Src, cv::Mat& Dest) {
-	cv::Mat Enhanced;
-	cv::Ptr<cv::CLAHE> Clahe = cv::createCLAHE(3.0, cv::Size(8, 8));
-	Clahe->apply(Src, Enhanced);
-
-	cv::Mat Kernel = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(15, 15));
-	cv::morphologyEx(Enhanced, Dest, cv::MORPH_BLACKHAT, Kernel);
-
-	cv::threshold(Dest, Dest, 10, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-}
-
-
-void ExtractFrangiVeins(const cv::Mat& Src, cv::Mat& Dest, float Sigma) {
-	cv::Mat Inverted;
-	cv::bitwise_not(Src, Inverted);
-
-	cv::Mat Smoothed;
-	cv::GaussianBlur(Inverted, Smoothed, cv::Size(0, 0), Sigma);
-
-	cv::Mat Dxx, Dyy, Dxy;
-	cv::Sobel(Smoothed, Dxx, CV_32F, 2, 0, 3);
-	cv::Sobel(Smoothed, Dyy, CV_32F, 0, 2, 3);
-	cv::Sobel(Smoothed, Dxy, CV_32F, 1, 1, 3);
-
-	cv::Mat Vesselness = cv::Mat::zeros(Src.size(), CV_32F);
-
-	float Beta = 0.5f;
-	float C = 10.0f;
-
-	for (int Y = 0; Y < Src.rows; Y++) {
-		const float* DxxRow = Dxx.ptr<float>(Y);
-		const float* DyyRow = Dyy.ptr<float>(Y);
-		const float* DxyRow = Dxy.ptr<float>(Y);
-		float* VRow = Vesselness.ptr<float>(Y);
-
-		for (int X = 0; X < Src.cols; X++) {
-			float DxxVal = DxxRow[X];
-			float DyyVal = DyyRow[X];
-			float DxyVal = DxyRow[X];
-
-			float Tmp1 = (DxxVal + DyyVal) * 0.5f;
-			float Tmp2 = std::sqrt((DxxVal - DyyVal) * (DxxVal - DyyVal) * 0.25f + DxyVal * DxyVal);
-
-			float Lambda1 = Tmp1 + Tmp2;
-			float Lambda2 = Tmp1 - Tmp2;
-
-			if (std::abs(Lambda1) > std::abs(Lambda2)) {
-				std::swap(Lambda1, Lambda2);
-			}
-
-			if (Lambda2 >= 0) {
-				VRow[X] = 0.0f;
-				continue;
-			}
-
-			float Rb = Lambda1 / Lambda2;
-			float S2 = Lambda1 * Lambda1 + Lambda2 * Lambda2;
-
-			float Blobness = std::exp(-(Rb * Rb) / (2.0f * Beta * Beta));
-			float Structure = 1.0f - std::exp(-S2 / (2.0f * C * C));
-
-			VRow[X] = Blobness * Structure;
-		}
-	}
-
-	cv::normalize(Vesselness, Dest, 0, 255, cv::NORM_MINMAX, CV_8UC1);
-}
-
-void XimgprocSkeletonize(const cv::Mat& Src, cv::Mat& Dest)
+std::vector<cv::Point2f>
+ZCore::ValleyExRadial(const cv::Mat& Frame, float SmoothSigma, int MinNeighbor)
 {
-	cv::ximgproc::thinning(Src, Dest, cv::ximgproc::THINNING_ZHANGSUEN);
+    // Step 1: Make a black-and-white silhouette of the hand
+    cv::Mat Gray, Mask, Dist;
+    if (Frame.channels() == 3)
+        cv::cvtColor(Frame, Gray, cv::COLOR_BGR2GRAY);
+    else
+        Gray = Frame;
+
+    cv::GaussianBlur(Gray, Mask, cv::Size(7, 7), 0);
+    cv::threshold(Mask, Mask, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+
+    // Step 2: Find the center of the palm (the point farthest from any edge of the hand)
+    cv::distanceTransform(Mask, Dist, cv::DIST_L2, 5);
+    double    MaxVal;
+    cv::Point MaxLoc;
+    cv::minMaxLoc(Dist, nullptr, &MaxVal, nullptr, &MaxLoc);
+    cv::Point2f Center = MaxLoc;
+
+    // Step 3: Trace the outline of the hand
+    std::vector<std::vector<cv::Point>> Contours;
+    cv::findContours(Mask, Contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_NONE);
+    if (Contours.empty())
+        return {};
+
+    auto HandContour =
+        *std::max_element(Contours.begin(), Contours.end(), [](const auto& A, const auto& B) {
+            return cv::contourArea(A) < cv::contourArea(B);
+        });
+
+    // Scale smoothing window based on hand size
+    float DynamicSigma    = static_cast<float>(MaxVal) * 0.12f;
+    int   DynamicNeighbor = static_cast<int>(MaxVal * 0.25f);
+
+    // Step 4: Measure distance from palm center to every point along the hand outline
+    std::vector<float> RadialDistances;
+    for (const auto& Pt : HandContour) {
+        RadialDistances.push_back(
+            static_cast<float>(cv::norm(Center - static_cast<cv::Point2f>(Pt)))
+        );
+    }
+
+    // Step 5: Smooth out the distance measurements so small skin wrinkles don't look like valleys
+    std::vector<float> Smoothed;
+    cv::Mat            DistMat(RadialDistances, false);
+    cv::GaussianBlur(DistMat, DistMat, cv::Size(1, 0), DynamicSigma);
+    DistMat.copyTo(Smoothed);
+
+    // Step 6: Find dips (closest points to palm center) which mark where fingers meet
+    std::vector<cv::Point2f> Valleys;
+    int                      N = static_cast<int>(Smoothed.size());
+    for (int I = 0; I < N; ++I) {
+        bool IsLocalMin = true;
+        for (int J = -DynamicNeighbor; J <= DynamicNeighbor; ++J) {
+            if (Smoothed[(I + J + N) % N] < Smoothed[I]) {
+                IsLocalMin = false;
+                break;
+            }
+        }
+
+        if (IsLocalMin) {
+            cv::Point2f Pt = HandContour[I];
+
+            // Ignore points below the palm (that's the wrist / forearm, not fingers)
+            if (Pt.y > Center.y + (MaxVal * 0.6f))
+                continue;
+
+            // Ignore points touching the camera screen edges
+            if (Pt.x <= 10 || Pt.x >= Frame.cols - 11 || Pt.y <= 10)
+                continue;
+
+            // Ignore shallow false dips
+            if (Smoothed[I] < (MaxVal * 0.9f))
+                continue;
+
+            Valleys.push_back(Pt);
+        }
+    }
+
+    // Step 7: Order valleys counter-clockwise around the hand so we know which finger is which
+    std::sort(Valleys.begin(), Valleys.end(), [&](const cv::Point2f& A, const cv::Point2f& B) {
+        float AngA = std::atan2(A.y - Center.y, A.x - Center.x);
+        float AngB = std::atan2(B.y - Center.y, B.x - Center.x);
+
+        return AngA < AngB;
+    });
+
+    return Valleys;
 }
 
+std::vector<cv::Point2f>
+ZCore::ROIGen(cv::Point2f P1, cv::Point2f P2, int Handedness, float ScaleFactor)
+{
+    // Distance between finger valleys (tells us how big the hand is)
+    float Dx = P2.x - P1.x;
+    float Dy = P2.y - P1.y;
+    float D  = std::sqrt(Dx * Dx + Dy * Dy);
 
-cv::Mat ExtractDistanceTransformRoi(const cv::Mat& frame, cv::Point& centerPoint, int& dynamicRoiSize) {
-	cv::Mat blurred, thresh, distMap;
-	cv::Mat outFrame = frame.clone();
+    // Center point between the two finger valleys
+    cv::Point2f Mid = (P1 + P2) * 0.5f;
 
-	cv::GaussianBlur(frame, blurred, cv::Size(7, 7), 0);
-	cv::threshold(blurred, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+    // Unit directions that rotate with the hand:
+    //   UnitDown:  Points inward toward the center of the palm
+    //   UnitRight: Points sideways across the fingers
+    cv::Point2f UnitDown(-Dy / D, Dx / D);
+    cv::Point2f UnitRight(Dx / D, Dy / D);
 
-	std::vector<std::vector<cv::Point>> contours;
-	cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+    // Push the box center down into the middle of the palm
+    float       OffsetDist = D * 2.2f;
+    cv::Point2f ROICenter  = Mid + (UnitDown * OffsetDist);
 
-	if (contours.empty()) return outFrame;
+    // Nudge box slightly away from the thumb side depending on left or right hand
+    float ThumbShiftFactor = 0.3f;
+    ROICenter              = ROICenter + (UnitRight * (D * ThumbShiftFactor * Handedness));
 
-	double maxArea = 0;
-	int largestContourIndex = -1;
-	for (size_t i = 0; i < contours.size(); i++) {
-		double area = cv::contourArea(contours[i]);
-		if (area > maxArea) {
-			maxArea = area;
-			largestContourIndex = i;
-		}
-	}
+    // Calculate box radius
+    float H = (D * ScaleFactor) / 2.0f;
 
-	if (largestContourIndex == -1) return outFrame;
+    // Build the 4 rotated corners of the palm square
+    std::vector<cv::Point2f> Corners(4);
+    Corners[0] = ROICenter - (UnitRight * H) - (UnitDown * H); // Top-left
+    Corners[1] = ROICenter + (UnitRight * H) - (UnitDown * H); // Top-right
+    Corners[2] = ROICenter + (UnitRight * H) + (UnitDown * H); // Bottom-right
+    Corners[3] = ROICenter - (UnitRight * H) + (UnitDown * H); // Bottom-left
 
-	cv::Mat handMask = cv::Mat::zeros(thresh.size(), CV_8UC1);
-	cv::drawContours(handMask, contours, largestContourIndex, cv::Scalar(255), cv::FILLED);
-
-	cv::distanceTransform(handMask, distMap, cv::DIST_L2, 5);
-
-	double minVal, maxVal;
-	cv::Point minLoc, maxLoc;
-	cv::minMaxLoc(distMap, &minVal, &maxVal, &minLoc, &maxLoc);
-	centerPoint = maxLoc;
-
-	double scaleFactor = 2.5;
-	dynamicRoiSize = static_cast<int>(maxVal * scaleFactor);
-
-	if (dynamicRoiSize % 2 != 0) dynamicRoiSize++;
-
-	int halfSize = dynamicRoiSize / 2;
-	int x1 = std::max(0, centerPoint.x - halfSize);
-	int y1 = std::max(0, centerPoint.y - halfSize);
-	int x2 = std::min(outFrame.cols, centerPoint.x + halfSize);
-	int y2 = std::min(outFrame.rows, centerPoint.y + halfSize);
-
-	cv::rectangle(outFrame, cv::Point(x1, y1), cv::Point(x2, y2), cv::Scalar(255), 2);
-
-	int crossSize = 10;
-	cv::line(outFrame, cv::Point(centerPoint.x - crossSize, centerPoint.y),
-		cv::Point(centerPoint.x + crossSize, centerPoint.y),
-		cv::Scalar(255), 2);
-	cv::line(outFrame, cv::Point(centerPoint.x, centerPoint.y - crossSize),
-		cv::Point(centerPoint.x, centerPoint.y + crossSize),
-		cv::Scalar(255), 2);
-
-	if (!outFrame.isContinuous()) {
-		outFrame = outFrame.clone();
-	}
-
-	return outFrame;
+    return Corners;
 }
 
+float ZCore::Match(
+    const cv::Mat& T1, const cv::Mat& M1, const cv::Mat& T2, const cv::Mat& M2, int SearchRange
+)
+{
+    // Check that both enrolled and live templates actually have data
+    if (T1.empty() || M1.empty() || T2.empty() || M2.empty()) {
+        return 1.0f; // No match
+    }
+    if (T1.size() != M1.size() || T2.size() != M2.size() || T1.size() != T2.size()) {
+        return 1.0f;
+    }
 
-cv::Mat AnnotateMomentsRoi(const cv::Mat& frame, int roiSize, cv::Point& centerPoint) {
-	cv::Mat blurred, thresh;
-	cv::Mat outFrame = frame.clone();
+    int M1Count = cv::countNonZero(M1);
+    int M2Count = cv::countNonZero(M2);
 
-	cv::GaussianBlur(frame, blurred, cv::Size(7, 7), 0);
-	cv::threshold(blurred, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+    // Require at least 25% overlapping vein pixels (min 500 px) to prevent noise false matches
+    int MinRequiredOverlap = std::max(500, static_cast<int>(std::min(M1Count, M2Count) * 0.25f));
 
-	std::vector<std::vector<cv::Point>> contours;
-	cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+    float BestScore = 1.0f; // Lower score is a better match (0.0 = perfect match)
 
-	if (contours.empty()) return outFrame;
+    // Slide live template slightly in X and Y (-SearchRange to +SearchRange) to find the best alignment
+    for (int Dy = -SearchRange; Dy <= SearchRange; Dy++) {
+        for (int Dx = -SearchRange; Dx <= SearchRange; Dx++) {
 
-	double maxArea = 0;
-	int largestContourIndex = -1;
-	for (size_t i = 0; i < contours.size(); i++) {
-		double area = cv::contourArea(contours[i]);
-		if (area > maxArea) {
-			maxArea = area;
-			largestContourIndex = i;
-		}
-	}
+            float Total = 0.0f;
+            float Diff  = 0.0f;
 
-	if (largestContourIndex == -1) return outFrame;
+            // Only inspect pixels inside the boundary margin so shifting doesn't read out-of-bounds
+            for (int I = SearchRange; I < T1.rows - SearchRange; I++) {
+                for (int J = SearchRange; J < T1.cols - SearchRange; J++) {
 
-	cv::Moments M = cv::moments(contours[largestContourIndex]);
-	if (M.m00 != 0) {
-		centerPoint.x = static_cast<int>(M.m10 / M.m00);
-		centerPoint.y = static_cast<int>(M.m01 / M.m00);
-	}
-	else {
-		return outFrame;
-	}
+                    // Only compare pixels where BOTH images confirm a vein is present
+                    if (M1.at<uchar>(I, J) > 0 && M2.at<uchar>(I + Dy, J + Dx) > 0) {
+                        Total += 1.0f;
 
-	int halfSize = roiSize / 2;
-	int x1 = std::max(0, centerPoint.x - halfSize);
-	int y1 = std::max(0, centerPoint.y - halfSize);
-	int x2 = std::min(outFrame.cols, centerPoint.x + halfSize);
-	int y2 = std::min(outFrame.rows, centerPoint.y + halfSize);
+                        int V1 = T1.at<uchar>(I, J);
+                        int V2 = T2.at<uchar>(I + Dy, J + Dx);
 
-	cv::rectangle(outFrame, cv::Point(x1, y1), cv::Point(x2, y2), cv::Scalar(255), 2);
+                        if (V1 != V2) {
+                            int Dist = std::abs(V1 - V2);
+                            if (Dist == 3)
+                                Dist = 1; // Direction 0 and 3 wrap around (only 45 degrees apart)
 
-	int crossSize = 10;
-	cv::line(outFrame, cv::Point(centerPoint.x - crossSize, centerPoint.y),
-		cv::Point(centerPoint.x + crossSize, centerPoint.y), cv::Scalar(255), 2);
-	cv::line(outFrame, cv::Point(centerPoint.x, centerPoint.y - crossSize),
-		cv::Point(centerPoint.x, centerPoint.y + crossSize), cv::Scalar(255), 2);
+                            if (Dist == 1) {
+                                Diff += 0.5f; // Small penalty for 45 degree tilt
+                            } else {
+                                Diff += 1.0f; // Full penalty for 90 degree perpendicular lines
+                            }
+                        }
+                    }
+                }
+            }
 
-	if (!outFrame.isContinuous()) outFrame = outFrame.clone();
-	return outFrame;
+            // Only score if there was enough overlapping vein area
+            if (Total >= MinRequiredOverlap) {
+                float CurrentScore = Diff / Total;
+                if (CurrentScore < BestScore)
+                    BestScore = CurrentScore;
+            }
+        }
+    }
+    return BestScore;
 }
 
+void ZCore::CalculateHessian(
+    const cv::Mat& Src, cv::Mat& Lxx, cv::Mat& Lxy, cv::Mat& Lyy, float Sigma
+)
+{
+    int KSize = static_cast<int>(4 * Sigma + 1);
+    if (KSize % 2 == 0)
+        KSize++;
 
+    cv::Mat Blurred;
+    cv::GaussianBlur(Src, Blurred, cv::Size(KSize, KSize), Sigma);
 
-cv::Mat AnnotateConvexityDefectRoi(const cv::Mat& frame, cv::Point& centerPoint, int& dynamicRoiSize) {
-	cv::Mat blurred, thresh;
-	cv::Mat outFrame = frame.clone();
-
-	cv::GaussianBlur(frame, blurred, cv::Size(7, 7), 0);
-	cv::threshold(blurred, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
-
-	std::vector<std::vector<cv::Point>> contours;
-	cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-
-	if (contours.empty()) return outFrame;
-
-	double maxArea = 0;
-	int largestIndex = -1;
-	for (size_t i = 0; i < contours.size(); i++) {
-		double area = cv::contourArea(contours[i]);
-		if (area > maxArea) { maxArea = area; largestIndex = i; }
-	}
-
-	if (largestIndex == -1) return outFrame;
-	const std::vector<cv::Point>& handContour = contours[largestIndex];
-
-	std::vector<int> hullIndices;
-	cv::convexHull(handContour, hullIndices, false, false);
-
-	std::vector<cv::Vec4i> defects;
-	if (hullIndices.size() > 3) {
-		cv::convexityDefects(handContour, hullIndices, defects);
-	}
-
-	std::vector<cv::Point> valleyPoints;
-	cv::Rect boundingRect = cv::boundingRect(handContour);
-
-	float minDepthThreshold = boundingRect.height / 8.0f;
-
-	for (const auto& defect : defects) {
-		float depth = defect[3] / 256.0f;
-		if (depth > minDepthThreshold) {
-			int farIdx = defect[2];
-			cv::Point valley = handContour[farIdx];
-
-			if (valley.y < boundingRect.y + (boundingRect.height * 0.6f)) {
-				valleyPoints.push_back(valley);
-				cv::circle(outFrame, valley, 4, cv::Scalar(255), -1);
-			}
-		}
-	}
-
-	if (valleyPoints.size() >= 2) {
-		int sumX = 0, sumY = 0;
-		for (const auto& pt : valleyPoints) {
-			sumX += pt.x;
-			sumY += pt.y;
-		}
-		int avgX = sumX / valleyPoints.size();
-		int avgY = sumY / valleyPoints.size();
-
-		int shiftDown = static_cast<int>(boundingRect.height * 0.25f);
-		centerPoint = cv::Point(avgX, avgY + shiftDown);
-	}
-	else {
-		cv::Moments M = cv::moments(handContour);
-		if (M.m00 != 0) {
-			centerPoint = cv::Point(static_cast<int>(M.m10 / M.m00), static_cast<int>(M.m01 / M.m00));
-		}
-		else {
-			return outFrame;
-		}
-	}
-
-	dynamicRoiSize = static_cast<int>(boundingRect.width * 0.6f);
-	if (dynamicRoiSize % 2 != 0) dynamicRoiSize++;
-
-	int halfSize = dynamicRoiSize / 2;
-	int x1 = std::max(0, centerPoint.x - halfSize);
-	int y1 = std::max(0, centerPoint.y - halfSize);
-	int x2 = std::min(outFrame.cols, centerPoint.x + halfSize);
-	int y2 = std::min(outFrame.rows, centerPoint.y + halfSize);
-
-	cv::rectangle(outFrame, cv::Point(x1, y1), cv::Point(x2, y2), cv::Scalar(255), 2);
-
-	int crossSize = 10;
-	cv::line(outFrame, cv::Point(centerPoint.x - crossSize, centerPoint.y),
-		cv::Point(centerPoint.x + crossSize, centerPoint.y), cv::Scalar(255), 2);
-	cv::line(outFrame, cv::Point(centerPoint.x, centerPoint.y - crossSize),
-		cv::Point(centerPoint.x, centerPoint.y + crossSize), cv::Scalar(255), 2);
-
-	if (!outFrame.isContinuous()) outFrame = outFrame.clone();
-	return outFrame;
+    // Calculate how brightness curves horizontally (Lxx), vertically (Lyy), and diagonally (Lxy)
+    cv::Sobel(Blurred, Lxx, CV_32F, 2, 0, 3);
+    cv::Sobel(Blurred, Lyy, CV_32F, 0, 2, 3);
+    cv::Sobel(Blurred, Lxy, CV_32F, 1, 1, 3);
 }
 
+cv::Mat ZCore::PreProcessTest(const cv::Mat& ROI, cv::Mat& Lxx, cv::Mat& Lxy, cv::Mat& Lyy)
+{
+    cv::Mat Resized, Output;
 
-cv::Mat DrawPcaDistanceRoi(const cv::Mat& frame) {
-	cv::Mat blurred, thresh, distMap;
-	cv::Mat outFrame = frame.clone();
+    // Step 1: Resize palm image to standard 128x128 resolution
+    cv::resize(ROI, Resized, cv::Size(128, 128), 0, 0, cv::INTER_AREA);
 
-	cv::GaussianBlur(frame, blurred, cv::Size(7, 7), 0);
-	cv::threshold(blurred, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+    // Step 2: Add mirror padding around edges so filters don't darken the borders
+    const int Padding = 10;
+    cv::Mat   Padded;
+    cv::copyMakeBorder(Resized, Padded, Padding, Padding, Padding, Padding, cv::BORDER_REFLECT);
 
-	std::vector<std::vector<cv::Point>> contours;
-	cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-	if (contours.empty()) return outFrame;
+    // Step 3: Boost vein contrast against skin tone
+    auto Clahe = cv::createCLAHE(2.0, cv::Size(8, 8));
+    Clahe->apply(Padded, Padded);
 
-	int largestIndex = -1;
-	double maxArea = 0;
-	for (size_t i = 0; i < contours.size(); i++) {
-		double area = cv::contourArea(contours[i]);
-		if (area > maxArea) { maxArea = area; largestIndex = i; }
-	}
-	if (maxArea < 5000) return outFrame;
+    // Step 4: Clean up camera sensor grain
+    cv::medianBlur(Padded, Padded, 3);
 
-	cv::Mat data(contours[largestIndex].size(), 2, CV_64F);
-	for (int i = 0; i < data.rows; i++) {
-		data.at<double>(i, 0) = contours[largestIndex][i].x;
-		data.at<double>(i, 1) = contours[largestIndex][i].y;
-	}
-	cv::PCA pca_analysis(data, cv::Mat(), cv::PCA::DATA_AS_ROW);
+    // Step 5: Measure surface curvature directions
+    float Sigma = 1.5f;
+    CalculateHessian(Padded, Lxx, Lxy, Lyy, Sigma);
 
-	cv::Point2f majorVector(pca_analysis.eigenvectors.at<double>(0, 0), pca_analysis.eigenvectors.at<double>(0, 1));
-	double angleRad = atan2(majorVector.y, majorVector.x);
-	double angleDeg = angleRad * 180.0 / CV_PI;
+    // Step 6: Highlight vein tube lines across small and medium widths
+    Output = FrangiFilter(Padded, 1.0f, 2.5f, 0.5f);
 
-	cv::Mat handMask = cv::Mat::zeros(thresh.size(), CV_8UC1);
-	cv::drawContours(handMask, contours, largestIndex, cv::Scalar(255), cv::FILLED);
+    // Step 7: Trim off the mirror padding to restore exact 128x128 size
+    Output = ZCore::CropBorder(Output, Padding);
+    Lxx    = ZCore::CropBorder(Lxx, Padding);
+    Lxy    = ZCore::CropBorder(Lxy, Padding);
+    Lyy    = ZCore::CropBorder(Lyy, Padding);
 
-	cv::distanceTransform(handMask, distMap, cv::DIST_L2, 5);
+    cv::normalize(Output, Output, 0, 255, cv::NORM_MINMAX, CV_8U);
 
-	double minVal, maxVal;
-	cv::Point minLoc, maxLoc;
-	cv::minMaxLoc(distMap, &minVal, &maxVal, &minLoc, &maxLoc);
-
-	cv::Point2f palmCenter = maxLoc;
-	double palmRadius = maxVal;
-	double boxSize = palmRadius * 2.2;
-
-	cv::RotatedRect roiRect(palmCenter, cv::Size2f(boxSize, boxSize), angleDeg + 90);
-	cv::Point2f vertices[4];
-	roiRect.points(vertices);
-	for (int i = 0; i < 4; i++) {
-		cv::line(outFrame, vertices[i], vertices[(i + 1) % 4], cv::Scalar(255), 2);
-	}
-
-	int crossSize = 10;
-	cv::line(outFrame, cv::Point(palmCenter.x - crossSize, palmCenter.y),
-		cv::Point(palmCenter.x + crossSize, palmCenter.y), cv::Scalar(255), 2);
-	cv::line(outFrame, cv::Point(palmCenter.x, palmCenter.y - crossSize),
-		cv::Point(palmCenter.x, palmCenter.y + crossSize), cv::Scalar(255), 2);
-
-	if (!outFrame.isContinuous()) {
-		outFrame = outFrame.clone();
-	}
-
-	return outFrame;
+    return Output;
 }
 
+void ZCore::GenerateTemplate(
+    const cv::Mat& Vesselness,
+    const cv::Mat& Lxx,
+    const cv::Mat& Lxy,
+    const cv::Mat& Lyy,
+    cv::Mat&       OutTemplate,
+    cv::Mat&       OutMask
+)
+{
+    OutTemplate = cv::Mat::zeros(Vesselness.size(), CV_8U);
 
-#include <cmath>
+    // Vein mask: Only pixels with high vein brightness are included in matching
+    cv::threshold(Vesselness, OutMask, 50, 255, cv::THRESH_BINARY);
 
-cv::Mat DrawDistanceMomentsRoi(const cv::Mat& frame) {
-	cv::Mat blurred, thresh, distMap;
-	cv::Mat outFrame = frame.clone();
+    for (int R = 0; R < Vesselness.rows; R++) {
+        for (int C = 0; C < Vesselness.cols; C++) {
+            if (OutMask.at<uchar>(R, C) == 0)
+                continue; // Skip flat skin
 
-	cv::GaussianBlur(frame, blurred, cv::Size(7, 7), 0);
-	cv::threshold(blurred, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+            // Calculate the angle the vein line is pointing:
+            float Angle =
+                0.5f *
+                std::atan2(2.0f * Lxy.at<float>(R, C), Lxx.at<float>(R, C) - Lyy.at<float>(R, C));
 
-	cv::rectangle(thresh, cv::Point(0, 0), cv::Point(thresh.cols - 1, thresh.rows - 1), cv::Scalar(0), 1);
+            float Deg = Angle * 180.0f / static_cast<float>(CV_PI);
+            if (Deg < 0.0f)
+                Deg += 180.0f;
 
-	cv::distanceTransform(thresh, distMap, cv::DIST_L2, 5);
-
-	double minVal, maxVal;
-	cv::Point minLoc, maxLoc;
-	cv::minMaxLoc(distMap, &minVal, &maxVal, &minLoc, &maxLoc);
-
-	if (maxVal < 20) return outFrame;
-
-	cv::Point2f palmCenter = maxLoc;
-	double boxSize = maxVal * 2.2;
-
-	cv::Moments m = cv::moments(thresh, true);
-	double angleDeg = 0.0;
-
-	if (m.m00 != 0) {
-		double mu20 = m.mu20 / m.m00;
-		double mu02 = m.mu02 / m.m00;
-		double mu11 = m.mu11 / m.m00;
-
-		double angleRad = 0.5 * std::atan2(2 * mu11, mu20 - mu02);
-		angleDeg = angleRad * 180.0 / CV_PI;
-	}
-
-	cv::RotatedRect roiRect(palmCenter, cv::Size2f(boxSize, boxSize), angleDeg);
-	cv::Point2f vertices[4];
-	roiRect.points(vertices);
-
-	for (int i = 0; i < 4; i++) {
-		cv::line(outFrame, vertices[i], vertices[(i + 1) % 4], cv::Scalar(255), 2);
-	}
-
-	int crossSize = 10;
-	cv::line(outFrame, cv::Point(palmCenter.x - crossSize, palmCenter.y),
-		cv::Point(palmCenter.x + crossSize, palmCenter.y), cv::Scalar(255), 2);
-	cv::line(outFrame, cv::Point(palmCenter.x, palmCenter.y - crossSize),
-		cv::Point(palmCenter.x, palmCenter.y + crossSize), cv::Scalar(255), 2);
-
-	if (!outFrame.isContinuous()) outFrame = outFrame.clone();
-
-	return outFrame;
+            // Group the continuous angle into 4 simple compass directions:
+            if (Deg < 22.5f || Deg >= 157.5f)
+                OutTemplate.at<uchar>(R, C) = 0; // Horizontal (left-right)
+            else if (Deg < 67.5f)
+                OutTemplate.at<uchar>(R, C) = 1; // Diagonal Right
+            else if (Deg < 112.5f)
+                OutTemplate.at<uchar>(R, C) = 2; // Vertical (up-down)
+            else
+                OutTemplate.at<uchar>(R, C) = 3; // Diagonal Left
+        }
+    }
 }
 
+std::vector<uint8_t> ZCore::PackTemplate(const cv::Mat& Orient, const cv::Mat& Mask)
+{
+    std::vector<uint8_t> Buffer;
+    Buffer.reserve(4096 + 2048);
 
+    // Directions only need values 0, 1, 2, or 3 (2 bits each), so 4 pixels fit in 1 byte
+    uint8_t CurrentByte = 0;
+    int     BitCount    = 0;
+    for (size_t I = 0; I < Orient.total(); ++I) {
+        CurrentByte = (CurrentByte << 2) | (Orient.data[I] & 0x03);
+        BitCount += 2;
+        if (BitCount == 8) {
+            Buffer.push_back(CurrentByte);
+            CurrentByte = 0;
+            BitCount    = 0;
+        }
+    }
 
+    // Mask is binary (yes/no), so 8 pixels fit in 1 byte
+    CurrentByte = 0;
+    BitCount    = 0;
+    for (size_t I = 0; I < Mask.total(); ++I) {
+        CurrentByte = (CurrentByte << 1) | (Mask.data[I] > 0 ? 1 : 0);
+        BitCount++;
+        if (BitCount == 8) {
+            Buffer.push_back(CurrentByte);
+            CurrentByte = 0;
+            BitCount    = 0;
+        }
+    }
+    return Buffer; // Total size is exactly 6,144 bytes (6 KB)
+}
 
-cv::Point2f lastCenter(0, 0);
-float lastAngle = 0.0f;
-float lastSize = 100.0f;
-bool isLocked = false;
+void ZCore::UnpackTemplate(
+    const std::vector<uint8_t>& Buffer,
+    cv::Mat&                    Orient,
+    cv::Mat&                    Mask,
+    int                         Width,
+    int                         Height
+)
+{
+    int TotalPixels = Width * Height;
+    Orient          = cv::Mat::zeros(Height, Width, CV_8U);
+    Mask            = cv::Mat::zeros(Height, Width, CV_8U);
 
-cv::Mat DrawStickyDistanceRoi(const cv::Mat& frame) {
-	cv::Mat thresh, distMap;
-	cv::Mat outFrame = frame.clone();
+    size_t BufferIdx = 0;
 
-	cv::GaussianBlur(frame, thresh, cv::Size(5, 5), 0);
-	cv::threshold(thresh, thresh, 0, 255, cv::THRESH_BINARY | cv::THRESH_OTSU);
+    // Unpack 2 bits per pixel for vein direction
+    int     BitsProcessed = 0;
+    uint8_t CurrentByte   = 0;
+    for (int I = 0; I < TotalPixels; ++I) {
+        if (BitsProcessed == 0) {
+            CurrentByte   = Buffer[BufferIdx++];
+            BitsProcessed = 8;
+        }
+        Orient.data[I] = (CurrentByte >> (BitsProcessed - 2)) & 0x03;
+        BitsProcessed -= 2;
+    }
 
-	cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(3, 3));
-
-	cv::morphologyEx(thresh, thresh, cv::MORPH_OPEN, kernel);
-	cv::morphologyEx(thresh, thresh, cv::MORPH_CLOSE, kernel);
-
-	std::vector<std::vector<cv::Point>> contours;
-	cv::findContours(thresh, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-
-	cv::Mat cleanMask = cv::Mat::zeros(thresh.size(), CV_8UC1);
-	int handIdx = -1;
-	double maxArea = 0;
-
-	for (int i = 0; i < contours.size(); i++) {
-		double area = cv::contourArea(contours[i]);
-		if (area > 5000 && area > maxArea) { 
-			maxArea = area;
-			handIdx = i;
-		}
-	}
-
-	if (handIdx != -1) {
-		cv::drawContours(cleanMask, contours, handIdx, cv::Scalar(255), cv::FILLED);
-
-		cv::copyMakeBorder(cleanMask, cleanMask, 1, 1, 1, 1, cv::BORDER_CONSTANT, cv::Scalar(0));
-
-		cv::distanceTransform(cleanMask, distMap, cv::DIST_L2, 5);
-		double maxVal; cv::Point maxLoc;
-		cv::minMaxLoc(distMap, nullptr, &maxVal, nullptr, &maxLoc);
-
-		if (maxVal > 25) {
-			isLocked = true;
-			cv::Point2f targetCenter(maxLoc.x - 1, maxLoc.y - 1);
-
-			cv::Moments m = cv::moments(cleanMask, true);
-			float targetAngle = 0.5f * std::atan2(2 * m.mu11, m.mu20 - m.mu02) * 180.0f / (float)CV_PI;
-
-			lastCenter.x += (targetCenter.x - lastCenter.x) * 0.25f;
-			lastCenter.y += (targetCenter.y - lastCenter.y) * 0.25f;
-			lastAngle += (targetAngle - lastAngle) * 0.15f;
-			lastSize += ((float)maxVal * 2.3f - lastSize) * 0.2f;
-		}
-	}
-	else {
-		isLocked = false;
-	}
-
-	// 5. Render to UI
-	if (isLocked || lastSize > 60) {
-		cv::RotatedRect roiBox(lastCenter, cv::Size2f(lastSize, lastSize), lastAngle);
-		cv::Point2f vtx[4];
-		roiBox.points(vtx);
-		for (int i = 0; i < 4; i++) {
-			cv::line(outFrame, vtx[i], vtx[(i + 1) % 4], cv::Scalar(255), 2);
-		}
-	}
-
-	if (!outFrame.isContinuous()) outFrame = outFrame.clone();
-	return outFrame;
+    // Unpack 1 bit per pixel for the vein mask
+    BitsProcessed = 0;
+    for (int I = 0; I < TotalPixels; ++I) {
+        if (BitsProcessed == 0) {
+            CurrentByte   = Buffer[BufferIdx++];
+            BitsProcessed = 8;
+        }
+        Mask.data[I] = ((CurrentByte >> (BitsProcessed - 1)) & 0x01) ? 255 : 0;
+        BitsProcessed -= 1;
+    }
 }

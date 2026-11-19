@@ -32,14 +32,14 @@
   ],
   "buildPresets": [
     {
-      "name": "conan-release",
+      "name": "vs-release",
       "configurePreset": "conan-default",
       "configuration": "Release"
     }
   ],
   "testPresets": [
     {
-      "name": "conan-release",
+      "name": "vs-release",
       "configurePreset": "conan-default",
       "configuration": "Release",
       "execution": {

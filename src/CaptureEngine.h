@@ -40,7 +40,7 @@ public:
 
 	bool OpenGStream10Bit(std::string ip, int port, StreamMode mode);
 
-	void ZPiCap::CloseStream();
+	void CloseStream();
 
 	bool Read();
 

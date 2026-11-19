@@ -19,11 +19,12 @@ Status FusionServerImpl::FusionCapture(ServerContext* context,
     const ZFusionRequest* request,
     ServerWriter<ZFusionResponse>* writer) {
 
+    ZFusionCore FusionEngine;
+
     std::cout << "Received ZFusionRequest: " << request->session_id() << std::endl;
 
-    bool Result = RunZROI(this->ZPiCapture, 10000);
+    bool Result = FusionEngine.RunZROI(this->ZPiCapture, 10000);
 
-    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     if (!Result) {
         return Status(grpc::StatusCode::DEADLINE_EXCEEDED, "Palm not detected.");
@@ -34,9 +35,7 @@ Status FusionServerImpl::FusionCapture(ServerContext* context,
     ROIResponse.set_status_message(Result ? "ROI_SUCCESS" : "ROI_FAIL");
     writer->Write(ROIResponse);
 
-    std::this_thread::sleep_for(std::chrono::seconds(3));
-
-    std::string FusionPayload = "";
+    std::string FusionPayload = FusionEngine.RunZFusion(this->ZPiCapture, 10000);
 
     ZFusionResponse FusionResponse;
     FusionResponse.set_completion_phase(zfusion::ZFusionResponse_PHASE_PHASE_FUSION);
